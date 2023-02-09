@@ -1,0 +1,50 @@
+﻿@page
+@model PropertyManagementPortal.Pages.Apartments.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Apartment</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Apartment.Id" />
+            <div class="form-group">
+                <label asp-for="Apartment.TypeOfApartment" class="control-label"></label>
+                <input asp-for="Apartment.TypeOfApartment" class="form-control" />
+                <span asp-validation-for="Apartment.TypeOfApartment" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Apartment.ApartmentNumber" class="control-label"></label>
+                <input asp-for="Apartment.ApartmentNumber" class="form-control" />
+                <span asp-validation-for="Apartment.ApartmentNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Apartment.Rent" class="control-label"></label>
+                <input asp-for="Apartment.Rent" class="form-control" />
+                <span asp-validation-for="Apartment.Rent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Apartment.RenterName" class="control-label"></label>
+                <input asp-for="Apartment.RenterName" class="form-control" />
+                <span asp-validation-for="Apartment.RenterName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
