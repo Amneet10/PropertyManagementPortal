@@ -1,4 +1,6 @@
-﻿namespace PropertyManagementPortal.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace PropertyManagementPortal.Models
 {
     public class Apartment
     {
@@ -10,5 +12,8 @@
         public double Rent { get; set; }
 
         public string RenterName { get; set; }
+
+        [ForeignKey("Building")]
+        public int BuildingId { get; set;}
     }
 }

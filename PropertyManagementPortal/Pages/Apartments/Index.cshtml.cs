@@ -21,11 +21,13 @@ namespace PropertyManagementPortal.Pages.Apartments
 
         public IList<Apartment> Apartment { get;set; } = default!;
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(int Id)
         {
+            ViewData["Id"] = Id;    
             if (_context.Apartment != null)
             {
-                Apartment = await _context.Apartment.ToListAsync();
+                Apartment = await _context.Apartment.Where(a => a.BuildingId == Id).ToListAsync();
+
             }
         }
     }

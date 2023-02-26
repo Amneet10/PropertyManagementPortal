@@ -28,5 +28,7 @@ namespace PropertyManagementPortal.Pages.Buildings
                 Building = await _context.Building.ToListAsync();
             }
         }
+
+       
     }
 }

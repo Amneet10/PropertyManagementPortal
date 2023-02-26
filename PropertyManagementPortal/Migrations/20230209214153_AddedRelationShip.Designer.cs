@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PropertyManagementPortal.Data;
 
@@ -10,9 +11,11 @@ using PropertyManagementPortal.Data;
 namespace PropertyManagementPortal.Migrations
 {
     [DbContext(typeof(PropertyManagementPortalContext))]
-    partial class PropertyManagementPortalContextModelSnapshot : ModelSnapshot
+    [Migration("20230209214153_AddedRelationShip")]
+    partial class AddedRelationShip
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

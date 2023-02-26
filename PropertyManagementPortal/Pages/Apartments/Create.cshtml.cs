@@ -26,17 +26,35 @@ namespace PropertyManagementPortal.Pages.Apartments
 
         [BindProperty]
         public Apartment Apartment { get; set; } = default!;
+
         
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(int Id)
         {
-          if (!ModelState.IsValid || _context.Apartment == null || Apartment == null)
-            {
-                return Page();
+            Console.WriteLine("building id is "+ Id);
+
+            if (!ModelState.IsValid )
+            {               
+               return Page();
             }
 
-            _context.Apartment.Add(Apartment);
+            var building = await _context.Building.FindAsync(Id);
+            if (building == null)
+            {
+                return NotFound();
+            }
+
+            var apartment = new Apartment
+            {
+                TypeOfApartment = Apartment.TypeOfApartment,
+                ApartmentNumber = Apartment.ApartmentNumber,
+                Rent = Apartment.Rent,
+                RenterName= Apartment.RenterName,
+                BuildingId = Id
+            };
+
+            _context.Apartment.Add(apartment);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
