@@ -57,7 +57,7 @@ namespace PropertyManagementPortal.Pages.Apartments
             _context.Apartment.Add(apartment);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./Index", new { id = Id });
         }
     }
 }
