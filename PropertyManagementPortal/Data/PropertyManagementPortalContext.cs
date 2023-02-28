@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using PropertyManagementPortal.Models;
 
 namespace PropertyManagementPortal.Data
 {
-    public class PropertyManagementPortalContext : DbContext
+    public class PropertyManagementPortalContext : IdentityDbContext
     {
         public PropertyManagementPortalContext (DbContextOptions<PropertyManagementPortalContext> options)
             : base(options)
