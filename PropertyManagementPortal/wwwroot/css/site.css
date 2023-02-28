@@ -20,3 +20,10 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+
+.logo-container img {
+    width: 20%;
+    height: 20%;
+    object-fit: contain;
+}

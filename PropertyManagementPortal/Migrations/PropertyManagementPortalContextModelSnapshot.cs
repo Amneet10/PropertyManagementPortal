@@ -16,7 +16,7 @@ namespace PropertyManagementPortal.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.2")
+                .HasAnnotation("ProductVersion", "7.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -48,8 +48,6 @@ namespace PropertyManagementPortal.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BuildingId");
-
                     b.ToTable("Apartment");
                 });
 
@@ -76,22 +74,6 @@ namespace PropertyManagementPortal.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Building");
-                });
-
-            modelBuilder.Entity("PropertyManagementPortal.Models.Apartment", b =>
-                {
-                    b.HasOne("PropertyManagementPortal.Models.Building", "Building")
-                        .WithMany("Apartments")
-                        .HasForeignKey("BuildingId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Building");
-                });
-
-            modelBuilder.Entity("PropertyManagementPortal.Models.Building", b =>
-                {
-                    b.Navigation("Apartments");
                 });
 #pragma warning restore 612, 618
         }
