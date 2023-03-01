@@ -2,7 +2,7 @@
 @model PropertyManagementPortal.Pages.Buildings.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Buildings";
 }
 
 <h3>All Buildings</h3>
@@ -14,19 +14,25 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Building[0].OwnerName)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.OwnerName">
+                @Html.DisplayNameFor(model => model.Buildings[0].OwnerName)
+                    </a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Building[0].TypeOfBuilding)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.TypeOfBuilding">
+                @Html.DisplayNameFor(model => model.Buildings[0].TypeOfBuilding)
+                </a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Building[0].AddressOfBuilding)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.AddressOfBuilding">
+                @Html.DisplayNameFor(model => model.Buildings[0].AddressOfBuilding)
+                </a>
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Building) {
+@foreach (var item in Model.Buildings) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.OwnerName)
@@ -37,7 +43,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.AddressOfBuilding)
             </td>
-            <td>
+            <td> 
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a> |
