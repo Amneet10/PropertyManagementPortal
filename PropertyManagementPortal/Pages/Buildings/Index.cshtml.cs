@@ -23,19 +23,31 @@ namespace PropertyManagementPortal.Pages.Buildings
         public string OwnerName { get; set; }
         public string TypeOfBuilding { get; set; }
         public string AddressOfBuilding { get; set; }
+
+        public string CurrentFilter { get; set; }
         
 
         public IList<Building> Buildings { get;set; } = default!;
 
-        public async Task OnGetAsync(string sortOrder)
+        public async Task OnGetAsync(string sortOrder, string searchString)
         {
             OwnerName = sortOrder == "OwnerName" ? "OwnerName_desc" : "OwnerName";
             TypeOfBuilding = sortOrder == "TypeOfBuilding"? "TypeOfBuilding_desc" : "TypeOfBuilding";
             AddressOfBuilding = sortOrder == "AddressOfBuilding" ? "AddressOfBuilding_desc" : "AddressOfBuilding";
 
 
+            CurrentFilter = searchString;
+
+
             IQueryable<Building> BuildingsIQ = from s in _context.Building
                                              select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                BuildingsIQ = BuildingsIQ.Where(s => s.OwnerName.Contains(searchString)
+                                   || s.AddressOfBuilding.Contains(searchString) 
+                                   || s.TypeOfBuilding.Contains(searchString));
+            }
 
             switch (sortOrder)
             {
